@@ -15,15 +15,12 @@ from life.models import *
 currentUser = User.objects.get(id=5)
 
 def index(request):
-    context = {
-        'user': currentUser,
-    }
-    return render(request, 'life/index.html', context)
+    return render(request, 'life/index.html')
   
 def forum(request):
     question_list = Question.objects.all()
     context = {
-        'question_list': question_list,
+        'question_list': question_list
     }
     return render(request, 'life/forum.html', context)
 
@@ -79,9 +76,10 @@ def login(request):
             user = search_result[0]
             if user.check_password(password):
                 currentUser = user
+                context['user_not_found'] = False
+                context['password_mismatch'] = False
                 return HttpResponseRedirect('/life/')
-            else:
-                context['password_mismatch'] = True
+                
     else:
         pass
             

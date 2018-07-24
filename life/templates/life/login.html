@@ -102,7 +102,7 @@
                       <label for="password"><font size="4">Password</font></label><br>
                       <input type="password" class="input form-control" id="password" name="password" placeholder="Enter Password" required>
                   </div>
-                  <>
+                 
                   <br><br>
                   <div class="form-group" align=center>
                       <label class="sr-only">Submit Login</label>
@@ -115,23 +115,21 @@
   
   <script>
     $(document).ready(function(){
-       var $errorMsgUserWrong =  $('<span id="error_msg_user" style="color:red;font-weight:bold">User name is incorrect. Please retry.</span>');
-       var $errorMsgPwdWrong =  $('<span id="error_msg_psw" style="color:red;font-weight:bold">Password is incorrect. Please retry.</span>');
-       var $passWordBox = $("#password");
-      
-       var checkUser = "{{user_not_found}}";
-       var checkPsw = "{{password_mismatch}}";
-      
-       if (checkUser == False) {
-         $errorMsgUserWrong.insertAfter($passWordBox);
-       }
-       if (checkPsw == False) {
          
-       }
+         var $errorMsgUserWrong =  $('<span id="error_msg_user" style="color:red;font-weight:bold">User name is incorrect. Please retry.</span>');
+         var $errorMsgPwdWrong =  $('<span id="error_msg_psw" style="color:red;font-weight:bold">Password is incorrect. Please retry.</span>');
+         var $passWordBox = $("#password");
+         var $submitBtn = $("#submit");
       
-      //console.log(checkUser);
-      //console.log(typeof checkUser);
-      
+         var user_not_found = "{{ user_not_found }}";
+         var password_mismatch = "{{ password_mismatch }}";
+        
+          if (user_not_found == "True") {
+              $errorMsgUserWrong.insertAfter($passWordBox);
+          }
+          if (password_mismatch == "True") {
+               $errorMsgPwdWrong.insertAfter($passWordBox);
+          }
        
     })
     
