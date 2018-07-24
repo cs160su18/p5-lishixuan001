@@ -277,6 +277,52 @@
         </div>
       </div>
     </div>
+      
+      {% if question_list %}
+        {% for question in question_list %}
+            <div class="questionWrapper" style="height:230px;">
+              <div class="question">
+                <span>{{ question.question }}</span>
+                {% if question.answer_set.all|length > 0 %}
+                    <i class="fas fa-check-circle greenCheck"></i>
+                {% endif %}
+                {% if question.user.identified %}
+                    <i class="fas fa-medal medal"></i>
+                {% endif %}
+              </div>
+              <div class="answerWrapper">
+                  {% if question.answer_set.all|length > 0 %}
+                    <i class="fas fa-user-circle doctorICON"></i>
+                    {% with question.answer_set.all|first as answer %}
+                        <div class="doctorWrapper">
+                          <div class="doctorName">{{ answer.user.username }}</div>
+                          <div class="doctorDescription">{{ answer.user.job_title }} @ {{ answer.user.workplace }}</div>
+                        </div>
+                        <div class="answerText">
+                            {{ answer.answer }}
+                        </div>
+                    {% endwith %}
+                  {% else %}
+                    <div>{{ question.description }}</div>
+                  {% endif %}
+                <div class="shareLike">
+                  {% if question.answer_set.all %}
+                    {% with question.answer_set.all|first as answer %}
+                      {% if answer.likes > 0 %}
+                        <i style="color:#FF3333" class="fas fa-heart" onclick="like()"></i>
+                        {{ answer.likes }}
+                      {% else %}
+                        <i class="fas fa-heart" onclick="like();"></i>
+                      {% endif %}
+                    {% endwith %}
+                  {% endif %}
+                  <i class="fas fa-retweet" style="margin-left:5px;"></i>
+                </div>
+              </div>
+            </div>
+        {% endfor %}
+      {% endif %}
+      
     
     <div id="menu">
       <a href="/life/forum/"><div class="menuICON">
