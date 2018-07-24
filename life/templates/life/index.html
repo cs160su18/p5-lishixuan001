@@ -67,7 +67,7 @@
       </div>
       <div class="row text-center" style="margin-bottom:10px;">
         <div class="col-12" id="greeting">
-          Good morning,
+          Good Morning<!-- Auto-detect Time -->
         </div>
       </div>
       <div class="row align-item-center text-center" style="margin-bottom:10px;">
@@ -78,9 +78,15 @@
         </div>
       </div>
       <div class="row text-center">
-        <div class="col-12" id="userName">
-          Tom Smith
-        </div>
+        {% if user.id == 5 %} <!-- Not logged in if id == 5 (Anonymous) -->
+            <div class="col-12" id="userName">
+                Guest
+            </div>
+        {% else %}
+            <div class="col-12" id="userName">
+                {{ user.username }}
+            </div>
+        {% endif %}
       </div>
       <div class="row aligh-item-center text-center"  style="margin-top:50px; margin-bottom:10px;">
         <div class="col-6 aligh-item-center text-center" style="padding-right:5px !important; padding-left:5px !important;">
