@@ -228,8 +228,12 @@
           <div class="questionWrapper">
             <div class="question">
               <span id="Question">{{ question.question }}</span>
-              <i class="fas fa-check-circle greenCheck"></i>
-              <i class="fas fa-medal medal"></i>
+              {% if question.answer_set.all|length > 0 %}
+                <i class="fas fa-check-circle greenCheck"></i>
+              {% endif %}
+              {% if question.prof_answered %}
+                <i class="fas fa-medal medal"></i>
+              {% endif %}
             </div>
             
           <div class="questionDescription">

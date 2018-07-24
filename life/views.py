@@ -116,6 +116,8 @@ def login(request):
                 context['user_not_found'] = False
                 context['password_mismatch'] = False
                 return HttpResponseRedirect('/life/')
+            else:
+              context['password_mismatch'] = True
                 
     else:
         pass
