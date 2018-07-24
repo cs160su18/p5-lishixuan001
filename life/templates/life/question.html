@@ -227,60 +227,66 @@
         <div class="col-12">
           <div class="questionWrapper">
             <div class="question">
-              <span id="Question">Why do people have fever?</span>
+              <span id="Question">{{ question.question }}</span>
               <i class="fas fa-check-circle greenCheck"></i>
               <i class="fas fa-medal medal"></i>
             </div>
             
           <div class="questionDescription">
             <div class="answerText">
-              When your body temperature rises because of an infection, 
-              it's called a fever. Fevers are caused ...
+              {{ question.description }}
             </div>
             
         </div>
         </div>
       </div>
     </div>
-          <div class="row align-item-center">
+      <div class="row align-item-center">
         <div class="col-12">
           <div class="myAnswerWrapper">
+              <form id=input action="/life/forum/question/{{ question.id }}/" method="post">
+                  {% csrf_token %}
                   <div class="form-group" style="margin-top:20px">
                       <label><font size="4" style="font-weight:bold;margin: 10px 18px 0px 30px;">Your answer</font></label><br>
-                      <textarea type="text" rows="5" class="input form-control" id="yourAnswer" name="yourAnswer"></textarea>
+                      <textarea type="text" rows="5" class="input form-control" id="yourAnswer" name="answer" required></textarea>
                   </div>
                   <br>
                   <div class="form-group" align=center>
                       <label class="sr-only">Submit Question</label>
                       <input class="btn btn-primary" id="submit" type="submit" value="Submit">
                   </div>
-              
+              </form>
           </div>
         </div>
       </div>
       
-      <div class="row align-item-center" style="margin-top:30px;">
-        <div class="col-12">
-          <div class="OtherAnswer" onclick="ToggleHideShowAns()">
-          <div class="answerWrapper">
-            <i class="fas fa-user-circle doctorICON"></i>
-            <div class="doctorWrapper">
-              <div class="doctorName">Dr. J.Freeman</div>
-              <div class="doctorDescription">Family doctor @ Oakland Medical Center</div>
+        {% for answer in question.answer_set.all %}
+          <div class="row align-item-center" style="margin-top:30px;">
+            <div class="col-12">
+              <div class="OtherAnswer" onclick="ToggleHideShowAns()">
+              <div class="answerWrapper">
+                <i class="fas fa-user-circle doctorICON"></i>
+                <div class="doctorWrapper">
+                  <div class="doctorName">{{ answer.user.username }}</div>
+                  <div class="doctorDescription">{{ answer.user.job_title }} @ {{ answer.user.workplace }}</div>
+                </div>
+                <div class="answerText" id="AnswerText1">
+                  {{ answer.answer }}
+                </div>
+                </div>
+                <div class="shareLike">
+                    {% if answer.likes > 0 %}
+                        <i style="color:#FF3333" class="fas fa-heart"></i> 
+                        {{ answer.likes }}
+                    {% else %}
+                        <i class="fas fa-heart"></i>
+                    {% endif %}
+                  <i class="fas fa-retweet" style="margin-left:5px;"></i>
+                </div> 
+              </div>
             </div>
-            <div class="answerText" id="AnswerText1">
-              When your body temperature rises because of an infection, 
-              it's called a fever. Fevers are caused skdfjskdjfhkasjdfhkas jdfhk sjdfhaksdjfh kasjdfhkasjdf hksjdfksj dfhkasjf 
-              dhaksfhd lsdkfjal lskdjfa ;eifou weifu ;.lskejf ;wioe .kfj.a wleifj ;wio
-            </div>
-            </div>
-            <div class="shareLike">
-              <i class="fas fa-heart"></i>
-              <i class="fas fa-retweet" style="margin-left:5px;"></i>
-            </div> 
           </div>
-        </div>
-      </div>
+        {% endfor %}
  
     
     

@@ -71,10 +71,19 @@ def tracker(request):
 def question(request, question_id):
     global currentUser
     question = Question.objects.get(id=question_id)
+    
+    if request.method == 'POST':
+        answer = request.POST['answer'].strip()
+        currentUser.answer_set.create(question=question, answer=answer)
+        question.save()
+        return HttpResponseRedirect('/life/forum/question/' + str(question_id))
+    else:
+        pass
+
     context = {
         'question': question,
     }
-    return render(request, 'life/question.html')
+    return render(request, 'life/question.html', context)
 
 def registration(request):
     global currentUser
