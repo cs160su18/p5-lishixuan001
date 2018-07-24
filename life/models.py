@@ -26,6 +26,7 @@ class Question(models.Model):
     description = models.CharField(default="", max_length=500)
     
     user = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
+    prof_answered = models.BooleanField(default=False)
     
     # >>> q.creation_date.strftime("%x") 
     # '07/23/18'
@@ -34,12 +35,19 @@ class Question(models.Model):
     # Many other directives to explore
     creation_date = models.DateTimeField(editable=False, blank=True, null=True)
     last_modified = models.DateTimeField(editable=False, blank=True, null=True)
+    
+    # Every time question's answers change, remember to q.save() to update q.prof_answered value
+    def hasIdentifiedAnswer(self, *args, **kwargs):
+        for answer in self.answer_set.all():
+            if answer.user.identified:
+                return True
+        return False
 
     def save(self, *args, **kwargs):
         if not self.id:
             self.creation_date = timezone.now()
-
         self.last_modified = timezone.now()
+        self.prof_answered = self.hasIdentifiedAnswer()
         return super(Question, self).save(*args, **kwargs)
     
 class Answer(models.Model):

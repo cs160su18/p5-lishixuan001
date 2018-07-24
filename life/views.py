@@ -59,10 +59,6 @@ def tracker(request):
 def case(request):
     global currentUser
     return render(request, 'life/case.html')
-  
-def case(request):
-    global currentUser
-    return render(request, 'life/case.html')
 
 def case_create(request):
     global currentUser
@@ -71,6 +67,14 @@ def case_create(request):
 def tracker(request):
     global currentUser
     return render(request, 'life/tracker.html')
+
+def question(request, question_id):
+    global currentUser
+    question = Question.objects.get(id=question_id)
+    context = {
+        'question': question,
+    }
+    return render(request, 'life/question.html')
 
 def registration(request):
     global currentUser

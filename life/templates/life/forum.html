@@ -69,7 +69,6 @@
       margin-top: 55px;
     }
     
-    
     .questionWrapper {
       border-radius: 25px;
       background: #e4fff6e6;
@@ -288,7 +287,7 @@
       
       {% if question_list %}
         {% for question in question_list %}
-            <div class="questionWrapper" style="height:230px;">
+            <div class="questionWrapper" style="height:230px;" onclick="goToQuestion({{ question.id }})">
               <div class="question">
                 <span>{{ question.question }}</span>
                 {% if question.answer_set.all|length > 0 %}
@@ -355,6 +354,13 @@
   </body>
   
   <script>
+      
+    function goToQuestion(question_id) {
+        var $url = window.location;
+        var $questionUrl = $url + "question/" + question_id;
+        window.open($questionUrl)
+    }  
+    
     function like() {
       if ($(this).css("color")=="red") {
         $(this).css("color","#79a5a1");
