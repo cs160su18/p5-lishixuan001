@@ -12,12 +12,24 @@ from life.models import *
 #     user_self = userList[0]
 
 # Default User -> Anonymous (id=5)
-currentUser = User.objects.get(id=5)
+guestUser = User.objects.get(id=5)
+currentUser = guestUser
 
 def index(request):
-    return render(request, 'life/index.html')
+    global currentUser
+    global guestUser
+    if request.method == 'POST':
+        currentUser = guestUser
+        return HttpResponseRedirect('/life/')
+    else:
+        pass
+    context = {
+        'user': currentUser,
+    }
+    return render(request, 'life/index.html', context)
   
 def forum(request):
+    global currentUser
     question_list = Question.objects.all()
     context = {
         'question_list': question_list
@@ -25,6 +37,7 @@ def forum(request):
     return render(request, 'life/forum.html', context)
 
 def forum_create(request):
+    global currentUser
     if request.method == 'POST':
         question_text = request.POST['question'].strip()
         question_description = request.POST['description'].strip()
@@ -36,21 +49,31 @@ def forum_create(request):
     return render(request, 'life/forum_create.html')
 
 def reminder(request):
-	return render(request, 'life/reminder.html')
+    global currentUser
+    return render(request, 'life/reminder.html')
 
 def tracker(request):
-	return render(request, 'life/tracker.html')
+    global currentUser
+    return render(request, 'life/tracker.html')
 
 def case(request):
-	return render(request, 'life/case.html')
+    global currentUser
+    return render(request, 'life/case.html')
+  
+def case(request):
+    global currentUser
+    return render(request, 'life/case.html')
 
 def case_create(request):
-	return render(request, 'life/case_create.html')
+    global currentUser
+    return render(request, 'life/case_create.html')
 
 def tracker(request):
-	return render(request, 'life/tracker.html')
+    global currentUser
+    return render(request, 'life/tracker.html')
 
 def registration(request):
+    global currentUser
     if request.method == 'POST':
         username = request.POST['username'].strip()
         password = request.POST['password'].strip()
@@ -61,6 +84,7 @@ def registration(request):
     return render(request, 'life/registration.html')
 
 def login(request):
+    global currentUser
     context = {
         'user_not_found': False,
         'password_mismatch': False,

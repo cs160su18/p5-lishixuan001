@@ -32,6 +32,15 @@
       background-size: cover;
     }
     
+    .logIn {
+      display:inline-block;
+      color:#015a52;
+      font-weight:bold;
+      font-size:14px;
+      position:absolute;
+      top:20px;  
+    }
+    
     #profile {
       text-shadow: 1px 1px 2px #1d2923;
       border-radius:100%;
@@ -62,9 +71,19 @@
 	<body>
 		<!-- Your layout here -->
     <div class="container-fluid">
-      <div class="row" style="height:50px;">
-        &nbsp;
+      <div class="row" style="height:50px;" >
+          {% if user.id == 5 %}
+            <a href="/life/login/"><div class="logIn" style="right:10px;"><u>Log in</u></div></a>
+            <a href="/life/register/"><div class="logIn" style="right:60px;"><u>Register</u></div></a>
+          {% else %}
+            <a href="#" onClick="document.getElementById('logoutform').submit()"><div class="logIn" style="right:10px;"><u>Log out</u></div></a>
+            <form id="logoutform" method="POST" action="/life/">
+                {% csrf_token %}
+                <input type="hidden" name="logout">
+            </form>
+          {% endif %}
       </div>
+      
       <div class="row text-center" style="margin-bottom:10px;">
         <div class="col-12" id="greeting">
           Good Morning<!-- Auto-detect Time -->
@@ -115,4 +134,21 @@
     </div>
 
 	</body>
+  
+  <script>
+    $(document).ready(function(){
+      var today = new Date();
+      var h = today.getHours();
+      
+      if (h>= 0 && h <12) {
+        $('#greeting').text("Good Morning");
+      }
+      else if (h >= 12 && h<18) {
+         $('#greeting').text("Good Afternoon");  
+      }
+      else {
+         $('#greeting').text("Good Evening");
+      }
+    })
+  </script>
 </html>
