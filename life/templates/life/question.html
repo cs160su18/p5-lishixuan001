@@ -75,9 +75,10 @@
       height:150px;
       background:#f0fff8c7;
       border-radius: 25px;
-      width:100%;
+      width:95%;
       padding: 20px 0px 20px 0px;
-      
+      margin-left:10px;
+      overflow:hidden;
     }
     
     .answerWrapper {
@@ -142,7 +143,7 @@
       padding-top: 10px;
       position:absolute;
       bottom:8px;
-      right:0;
+      right:20px;
     }
     
     .input {
@@ -260,7 +261,7 @@
       
       <div class="row align-item-center" style="margin-top:30px;">
         <div class="col-12">
-          <div class="OtherAnswer">
+          <div class="OtherAnswer" onclick="ToggleHideShowAns()">
           <div class="answerWrapper">
             <i class="fas fa-user-circle doctorICON"></i>
             <div class="doctorWrapper">
@@ -269,7 +270,8 @@
             </div>
             <div class="answerText" id="AnswerText1">
               When your body temperature rises because of an infection, 
-              it's called a fever. Fevers are caused ...
+              it's called a fever. Fevers are caused skdfjskdjfhkasjdfhkas jdfhk sjdfhaksdjfh kasjdfhkasjdf hksjdfksj dfhkasjf 
+              dhaksfhd lsdkfjal lskdjfa ;eifou weifu ;.lskejf ;wioe .kfj.a wleifj ;wio
             </div>
             </div>
             <div class="shareLike">
@@ -315,6 +317,10 @@
           $("#menu").stop(true).animate({ bottom: "-=80px" }, 600);
           $("#homeButton").stop(true).animate({ bottom: "-=78px" }, 600);   
       }   
+    }
+    
+    function ToggleHideShowAns() {
+      
     }
   </script>
   
