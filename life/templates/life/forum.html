@@ -195,97 +195,7 @@
       </div>
     </div>
     <div class="forumWrapper" id="forumWrapperID">
-      <div class="questionWrapper">
-          <div class="question">
-            <span>Why do people have fever?</span>
-            <i class="fas fa-check-circle greenCheck"></i>
-            <i class="fas fa-medal medal"></i>
-          </div>
-          <div class="answerWrapper">
-            <i class="fas fa-user-circle doctorICON"></i>
-            <div class="doctorWrapper">
-              <div class="doctorName">Dr. J.Freeman</div>
-              <div class="doctorDescription">Family doctor @ Oakland Medical Center</div>
-            </div>
-            <div class="answerText">
-              When your body temperature rises because of an infection, 
-              it's called a fever. Fevers are caused ...
-            </div>
-            
-        </div>
-          <div class="shareLike">
-              <i class="fas fa-heart"></i>
-              <i class="fas fa-retweet" style="margin-left:5px;"></i>
-            </div>
-      </div>
-      <div class="questionWrapper" style="height:256px;">
-          <div class="question">
-            <span>What should I do if I have a stomachache?</span>
-            <i class="fas fa-check-circle greenCheck"></i>
-            <i class="fas fa-medal medal"></i>
-          </div>
-          <div class="answerWrapper">
-            <i class="fas fa-user-circle doctorICON"></i>
-            <div class="doctorWrapper">
-              <div class="doctorName">Dr. A.Brown</div>
-              <div class="doctorDescription">Gastroenterologists @ Tang Center</div>
-            </div>
-            <div class="answerText">
-              There can be many reasons leading to stomachache...
-            </div>
-        </div>
-          <div class="shareLike">
-              <i class="fas fa-heart"></i>
-              <i class="fas fa-retweet" style="margin-left:5px;"></i>
-            </div>
-      </div>
-      <div class="questionWrapper" style="height:256px;">
-          <div class="question">
-            <span>Is Painkillers an over-the-counter medicine?</span>
-            <i class="fas fa-check-circle greenCheck"></i>
-          </div>
-          <div class="answerWrapper">
-            <i class="fas fa-user-circle doctorICON"></i>
-            <div class="doctorWrapper">
-              <div class="doctorName">Jerry</div>
-              <div class="doctorDescription">pharmacist @ CVS</div>
-            </div>
-            <div class="answerText">
-              Yes. It is an over-the-counter-medicine used for ...
-            </div>
-
-        </div>
-          <div class="shareLike">
-              <i class="fas fa-heart" onclick="like();"></i>
-              <i class="fas fa-retweet" style="margin-left:5px;"></i>
-          </div>
-        
-      </div>
-      <div class="questionWrapper" style="height:230px;">
-          <div class="question">
-            <span>What's dermatitis?</span>
-            <i class="fas fa-check-circle greenCheck"></i>
-            <i class="fas fa-medal medal"></i>
-          </div>
-          <div class="answerWrapper">
-            <i class="fas fa-user-circle doctorICON"></i>
-            <div class="doctorWrapper">
-              <div class="doctorName">Dr.K.Yang</div>
-              <div class="doctorDescription">Dermatologist @ Torrance Clinic</div>
-            </div>
-            <div class="answerText">
-             Dermatitis, also known as eczema, is a group of diseases that results in ...
-            </div>
-            
-        </div>
-          <div class="shareLike">
-              <i class="fas fa-heart" onclick="like();"></i>
-              <i class="fas fa-retweet" style="margin-left:5px;"></i>
-            </div>
-      </div>
-    </div>
-      
-      {% if question_list %}
+       {% if question_list %}
         {% for question in question_list %}
             <div class="questionWrapper" style="height:230px;" onclick="goToQuestion({{ question.id }})">
               <div class="question">
@@ -329,6 +239,7 @@
             </div>
         {% endfor %}
       {% endif %}
+    </div>
       
     
     <div id="menu">
