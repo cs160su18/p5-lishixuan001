@@ -77,6 +77,7 @@
       min-height: 218px;
       margin-top: 10px;
       margin-left: 10px !important;
+      position:relative;
     }
     
     .question {
@@ -135,6 +136,9 @@
       color: #79a5a1;
       padding-right: 20px;
       padding-top: 10px;
+      position:absolute;
+      bottom:8px;
+      right:0;
     }
     
     #menu {
@@ -208,11 +212,12 @@
               When your body temperature rises because of an infection, 
               it's called a fever. Fevers are caused ...
             </div>
-            <div class="shareLike">
+            
+        </div>
+          <div class="shareLike">
               <i class="fas fa-heart"></i>
               <i class="fas fa-retweet" style="margin-left:5px;"></i>
             </div>
-        </div>
       </div>
       <div class="questionWrapper" style="height:256px;">
           <div class="question">
@@ -229,11 +234,11 @@
             <div class="answerText">
               There can be many reasons leading to stomachache...
             </div>
-            <div class="shareLike">
+        </div>
+          <div class="shareLike">
               <i class="fas fa-heart"></i>
               <i class="fas fa-retweet" style="margin-left:5px;"></i>
             </div>
-        </div>
       </div>
       <div class="questionWrapper" style="height:256px;">
           <div class="question">
@@ -249,11 +254,13 @@
             <div class="answerText">
               Yes. It is an over-the-counter-medicine used for ...
             </div>
-            <div class="shareLike">
+
+        </div>
+          <div class="shareLike">
               <i class="fas fa-heart" onclick="like();"></i>
               <i class="fas fa-retweet" style="margin-left:5px;"></i>
-            </div>
-        </div>
+          </div>
+        
       </div>
       <div class="questionWrapper" style="height:230px;">
           <div class="question">
@@ -270,11 +277,12 @@
             <div class="answerText">
              Dermatitis, also known as eczema, is a group of diseases that results in ...
             </div>
-            <div class="shareLike">
+            
+        </div>
+          <div class="shareLike">
               <i class="fas fa-heart" onclick="like();"></i>
               <i class="fas fa-retweet" style="margin-left:5px;"></i>
             </div>
-        </div>
       </div>
     </div>
       
@@ -305,7 +313,8 @@
                   {% else %}
                     <div>{{ question.description }}</div>
                   {% endif %}
-                <div class="shareLike">
+              </div>
+              <div class="shareLike">
                   {% if question.answer_set.all %}
                     {% with question.answer_set.all|first as answer %}
                       {% if answer.likes > 0 %}
@@ -318,7 +327,6 @@
                   {% endif %}
                   <i class="fas fa-retweet" style="margin-left:5px;"></i>
                 </div>
-              </div>
             </div>
         {% endfor %}
       {% endif %}

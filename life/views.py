@@ -28,7 +28,8 @@ def forum_create(request):
     if request.method == 'POST':
         question_text = request.POST['question'].strip()
         question_description = request.POST['description'].strip()
-        Question.objects.create(user=currentUser, question=question_text, description=question_description)
+        currentUser.question_set.create(question=question_text, description=question_description)
+#         Question.objects.create(user=currentUser, question=question_text, description=question_description)
         return HttpResponseRedirect('/life/forum/')
     else:
         pass
@@ -49,7 +50,23 @@ def case_create(request):
 def tracker(request):
 	return render(request, 'life/tracker.html')
 
+def registration(request):
+    if request.method == 'POST':
+        username = request.POST['username'].strip()
+        password = request.POST['password'].strip()
+        User.objects.create(username=username, password=password)
+        return HttpResponseRedirect('/life/')
+    else:
+        pass
+    return render(request, 'life/registration.html')
 
+def login(request):
+    
+    context = {
+        'user_not_found': ,
+        'password_mismatch': ,
+    }
+    return render(request, 'life/login.html', context)
 
 
 

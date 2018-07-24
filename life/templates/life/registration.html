@@ -92,7 +92,6 @@
     
     <script>
         $(document).ready(function(){
-//             var $submitBtn = $("#form input[type='submit']");
             var $submitBtn = $("#submit");
             var $passwordBox = $("#password");
             var $confirmBox = $("#confirm_password");
@@ -148,7 +147,7 @@
     </nav>
       <div class="container">
           <div id="display">
-              <form id=input action="/life/" method="post">
+              <form id=input action="/life/registration/" method="post">
                   {% csrf_token %}
                   <div class="form-group">
                       <label for="username"><font size="4">Username</font></label><br>

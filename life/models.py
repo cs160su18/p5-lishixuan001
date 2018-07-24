@@ -9,10 +9,13 @@ class User(models.Model):
     def __str__(self):
         return self.username
     username = models.CharField(max_length=20)
-    password = models.CharField(default=None, max_length=30)
+    password = models.CharField(default="", max_length=30)
     job_title = models.CharField(default="Anonymous", max_length=30)
     workplace = models.CharField(default="Anonymous", max_length=40)
     identified = models.BooleanField(default=False)
+    
+    def check_password(self, psw):
+        return psw == self.password
     
 class Question(models.Model):
     def __str__(self):
@@ -20,7 +23,7 @@ class Question(models.Model):
             return self.question[:20]
         return self.question
     question = models.CharField(max_length=50)
-    description = models.CharField(max_length=500)
+    description = models.CharField(default="", max_length=500)
     
     user = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
     

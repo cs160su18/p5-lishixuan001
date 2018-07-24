@@ -10,6 +10,9 @@ urlpatterns = [
     path('case/',views.case, name='case'),
     path('case_create/',views.case_create, name='case_create'),
     path('tracker/',views.tracker, name='tracker'),
+    
+    path('registration/', views.registration, name='registration'),
+    path('login/', views.login, name='login'),
 ]
 
 
